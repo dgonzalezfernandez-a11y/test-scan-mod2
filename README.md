@@ -27,7 +27,7 @@ The application provides a fully functional MVP for Phase 1, deployable and demo
 
 ## Quick Start
 
-[cloudflarebutton]
+[![Deploy to Cloudflare](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/dgonzalezfernandez-a11y/scanform-escaneo-de-contenido-web-demo)
 
 Get started in minutes by deploying to Cloudflare Workers.
 
@@ -144,7 +144,7 @@ Deploy to Cloudflare Workers for edge execution with global CDN distribution.
 
 3. Access your deployed app at `<your-worker>.<your-subdomain>.workers.dev`.
 
-[cloudflarebutton]
+[![Deploy to Cloudflare](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/dgonzalezfernandez-a11y/scanform-escaneo-de-contenido-web-demo)
 
 ### Production Considerations
 
