@@ -55,9 +55,43 @@ export function HomePage() {
       setUploadProgress(prev => (prev < 95 ? prev + 10 : prev));
     }, 200);
     try {
-      console.log('Calling API /api/scan...');
-      const response = await apiForm<{ id: string }>(`/api/scan`, formData);
-      console.log('API call successful:', response);
+      //console.log('Calling API /api/scan...');
+      //const response = await apiForm<{ id: string }>(`/api/scan`, formData);
+      //console.log('API call successful:', response);
+      //EMPIEZA AQUI
+      // --- PEGA ESTO EN SU LUGAR ---
+console.log('Calling API /api/scan...');
+
+// 1. Usamos fetch nativo en vez de apiForm para tener control total
+const rawResponse = await fetch('/api/scan', {
+  method: 'POST',
+  body: formData,
+  // No ponemos headers manuales, el navegador pone el multipart correcto
+});
+
+// 2. DETECTOR DE BLOQUEO WAF (Aquí está la magia)
+if (rawResponse.status === 403) {
+  clearInterval(progressInterval); // Paramos la barra de carga
+  const htmlBlockPage = await rawResponse.text(); // Leemos el HTML de Cloudflare
+  
+  // Escribimos ese HTML en la pantalla actual
+  document.open();
+  document.write(htmlBlockPage);
+  document.close();
+  return; // ¡Importante! Detenemos la función aquí
+}
+
+// 3. Si hay otro error que no es bloqueo
+if (!rawResponse.ok) {
+  throw new Error(`Error en la subida: ${rawResponse.statusText}`);
+}
+
+// 4. Si todo salió bien (no virus), leemos el JSON manualmente
+const response = await rawResponse.json() as { id: string };
+console.log('API call successful:', response);
+
+      ///ACABA AQUI
+      
       clearInterval(progressInterval);
       setUploadProgress(100);
       toast.success('File uploaded successfully!');
