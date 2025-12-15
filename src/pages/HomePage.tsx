@@ -160,11 +160,23 @@ console.log('API call successful:', response);
                 transition={{ duration: 0.5 }}
                 className="inline-block"
               >
-                <div className="flex items-center justify-center gap-2 text-primary font-bold text-4xl md:text-5xl font-display">
+               /* <div className="flex items-center justify-center gap-2 text-primary font-bold text-4xl md:text-5xl font-display">
                   <Cloud className="h-10 w-10 text-orange-500" />
                   <span>ScanForm</span>
                   <span className="text-sm text-muted-foreground ml-2">v1.0.3</span>
-                </div>
+                </div>*/
+                {/* --- BLOQUE NUEVO CON LOGO --- */}
+<div className="flex items-center justify-center gap-3">
+  {/* Ajusta 'h-16' si quieres el logo más grande o más pequeño */}
+  <img 
+    src="/logo.png" 
+    alt="ScanForm Logo" 
+    className="h-16 w-auto object-contain" 
+  />
+  
+  {/* Ajustamos la versión para que quede alineada abajo a la derecha del logo */}
+  <span className="text-sm text-muted-foreground self-end mb-2">v1.0.4</span>
+</div>
               </motion.div>
               <motion.p
                 initial={{ opacity: 0, y: 20 }}
